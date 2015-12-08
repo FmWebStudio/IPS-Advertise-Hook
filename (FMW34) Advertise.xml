@@ -4,10 +4,10 @@
     <config>
       <hook_name>(FMW34) Advertise</hook_name>
       <hook_desc><![CDATA[Хук выводит слайдер баннеров на главной странице
-<br/>Разработка <a href="http://fm-web.uz/">Fm-Web</a> &amp; Folez.]]></hook_desc>
+<br/>Разработка <a href="http://fm-web.studio/">Fm-Web</a>.]]></hook_desc>
       <hook_author>Fm-Web (Recouse)</hook_author>
-      <hook_email>recouse@mail.ru</hook_email>
-      <hook_website>http://fm-web.uz</hook_website>
+      <hook_email>info@fm-web.studio</hook_email>
+      <hook_website>http://fm-web.studio</hook_website>
       <hook_update_check/>
       <hook_requirements><![CDATA[a:3:{s:21:"required_applications";a:0:{}s:20:"hook_php_version_min";s:1:"0";s:20:"hook_php_version_max";s:1:"0";}]]></hook_requirements>
       <hook_version_human>1.0.2</hook_version_human>
@@ -25,7 +25,7 @@
       <hook_data><![CDATA[a:8:{s:12:"dataLocation";s:0:"";s:14:"libApplication";s:0:"";s:15:"classToOverload";s:0:"";s:9:"skinGroup";s:11:"skin_boards";s:12:"skinFunction";s:18:"boardIndexTemplate";s:4:"type";s:2:"if";s:2:"id";s:11:"cats_forums";s:8:"position";s:11:"pre.startif";}]]></hook_data>
             <hooks_source><![CDATA[<?php
 /**
-*   Recouse (Fm-Web) & Folez
+*   Recouse (Fm-Web)
 */
 class FMW_advertise
 {
