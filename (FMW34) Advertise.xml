@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hookexport>
+  <hookdata>
+    <config>
+      <hook_name>(FMW34) Advertise</hook_name>
+      <hook_desc><![CDATA[Хук выводит слайдер баннеров на главной странице
+<br/>Разработка <a href="http://fm-web.uz/">Fm-Web</a> &amp; Folez.]]></hook_desc>
+      <hook_author>Fm-Web (Recouse)</hook_author>
+      <hook_email>recouse@mail.ru</hook_email>
+      <hook_website>http://fm-web.uz</hook_website>
+      <hook_update_check/>
+      <hook_requirements><![CDATA[a:3:{s:21:"required_applications";a:0:{}s:20:"hook_php_version_min";s:1:"0";s:20:"hook_php_version_max";s:1:"0";}]]></hook_requirements>
+      <hook_version_human>1.0.2</hook_version_human>
+      <hook_version_long>10020</hook_version_long>
+      <hook_extra_data><![CDATA[a:5:{s:7:"display";a:2:{s:8:"settings";s:137:"Группа настроек: (FMW34) Advertise 1.0.2<br />Настройки: Каким группам показать рекламу";s:9:"templates";s:31:"От skin_boards: fmw_advertise";}s:13:"settingGroups";a:1:{i:0;s:12:"fmwAdvertise";}s:8:"settings";a:1:{i:0;s:20:"fmw_advertise_groups";}s:9:"templates";a:1:{s:11:"skin_boards";a:1:{s:13:"fmw_advertise";s:13:"fmw_advertise";}}s:8:"database";a:0:{}}]]></hook_extra_data>
+      <hook_key>fmwHook_advertise</hook_key>
+      <hook_global_caches/>
+    </config>
+  </hookdata>
+  <hookfiles>
+    <file>
+      <hook_file_real>fmw_advertising.php</hook_file_real>
+      <hook_type>templateHooks</hook_type>
+      <hook_classname>FMW_advertise</hook_classname>
+      <hook_data><![CDATA[a:8:{s:12:"dataLocation";s:0:"";s:14:"libApplication";s:0:"";s:15:"classToOverload";s:0:"";s:9:"skinGroup";s:11:"skin_boards";s:12:"skinFunction";s:18:"boardIndexTemplate";s:4:"type";s:2:"if";s:2:"id";s:11:"cats_forums";s:8:"position";s:11:"pre.startif";}]]></hook_data>
+            <hooks_source><![CDATA[<?php
+/**
+*   Recouse (Fm-Web) & Folez
+*/
+class FMW_advertise
+{
+  public function __construct()
+  {
+    $this->registry = ipsRegistry::instance();
+	$this->settings =& $this->registry->fetchSettings();
+    $this->memberData =& $this->registry->member()->fetchMemberData();
+  }
+
+  public function getOutput()
+  {
+  if( in_array( $this->memberData['member_group_id'] , explode(',', $this->settings['fmw_advertise_groups'] ) ) ) {
+      return $this->registry->getClass('output')->getTemplate('boards')->fmw_advertise();
+  }
+}
+}
+?>]]></hooks_source>
+    </file>
+  </hookfiles>
+  <hookextras_settings>
+    <setting>
+      <conf_is_title>1</conf_is_title>
+      <conf_title_title>(FMW34) Advertise 1.0.2</conf_title_title>
+      <conf_title_desc>Настройка хука рекламы от Fm-Web</conf_title_desc>
+      <conf_title_noshow>0</conf_title_noshow>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_title_app>core</conf_title_app>
+      <conf_title_tab>Хуки от Fm-Web</conf_title_tab>
+    </setting>
+    <setting>
+      <conf_id>363</conf_id>
+      <conf_title>Баннер 1</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>1bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>13</conf_position>
+      <conf_start_group>Баннеры</conf_start_group>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>364</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 1 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>1bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>14</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>365</conf_id>
+      <conf_title>Баннер 2</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>2bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>15</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>366</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 2 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>2bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>16</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>367</conf_id>
+      <conf_title>Баннер 3</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>3bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>17</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>368</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 3 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>3bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>18</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>369</conf_id>
+      <conf_title>Баннер 4</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>4bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>19</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>370</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 4 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>4bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>20</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>371</conf_id>
+      <conf_title>Баннер 5</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>5bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>21</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>372</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 5 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>5bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>22</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>373</conf_id>
+      <conf_title>Баннер 6</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>6bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>23</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>374</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 6 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>6bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>24</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>375</conf_id>
+      <conf_title>Баннер 7</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>7bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>25</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>376</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 7 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>7bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>26</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>377</conf_id>
+      <conf_title>Баннер 8</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>8bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>27</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>378</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 8 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>8bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>28</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>379</conf_id>
+      <conf_title>Баннер 9</conf_title>
+      <conf_description>Ссылка на картинку. Размер 300px X 150px</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>9bannerImage</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>29</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>380</conf_id>
+      <conf_title>Ссылка</conf_title>
+      <conf_description>Ссылка на 9 баннер</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>9bannerLink</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>30</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>357</conf_id>
+      <conf_title>Скрыть контроллер в конце?</conf_title>
+      <conf_description>Скрывает контроллер в последнем баннере. Работает если отключена бесконечная прокрутка.</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>controlHide</conf_key>
+      <conf_value/>
+      <conf_default>0</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>6</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>358</conf_id>
+      <conf_title>Включить контроллеры?</conf_title>
+      <conf_description/>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>controlsEnable</conf_key>
+      <conf_value/>
+      <conf_default>1</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>7</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>410</conf_id>
+      <conf_title>Каким группам показать рекламу</conf_title>
+      <conf_description>Выберите группы, которым надо показать слайдер баннеров</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>multi</conf_type>
+      <conf_key>fmw_advertise_groups</conf_key>
+      <conf_value/>
+      <conf_default/>
+      <conf_extra>#show_groups#</conf_extra>
+      <conf_evalphp><![CDATA[
+if ( $save == 1)
+{
+	if ( is_array($_POST['fmw_advertise_groups']) )
+	{
+		$_POST['fmw_advertise_groups'] = implode(",",$_POST['fmw_advertise_groups']);
+	}
+	else
+	{
+		$_POST['fmw_advertise_groups'] = "";
+	}
+	
+	$key = 'fmw_advertise_groups';
+}
+if ( $show == 1 )
+{
+	$key = 'fmw_advertise_groups[]';
+} ]]></conf_evalphp>
+      <conf_protected>1</conf_protected>
+      <conf_position>1</conf_position>
+      <conf_start_group>Главные настройки</conf_start_group>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>352</conf_id>
+      <conf_title>Останавливать слайдер при наведении?</conf_title>
+      <conf_description>При наведении на блок с рекламой, слайдер автоматически останавливается</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>hoverStop</conf_key>
+      <conf_value/>
+      <conf_default>1</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>12</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>356</conf_id>
+      <conf_title>Включить бесконечную прокрутку?</conf_title>
+      <conf_description/>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>loopInfinite</conf_key>
+      <conf_value/>
+      <conf_default>1</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>5</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>359</conf_id>
+      <conf_title>Заменить правый контроллер текстом?</conf_title>
+      <conf_description><![CDATA[Если выбрано "Да", то вы сможете заменить картинки на текст.]]></conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>nextControl</conf_key>
+      <conf_value/>
+      <conf_default>0</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>8</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>360</conf_id>
+      <conf_title>Текст правого контроллера</conf_title>
+      <conf_description/>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>nextControlText</conf_key>
+      <conf_value/>
+      <conf_default>Следующий</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>9</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>361</conf_id>
+      <conf_title>Заменить правый контроллер текстом?</conf_title>
+      <conf_description><![CDATA[Если выбрано "Да", то вы сможете заменить картинки на текст.]]></conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>prevControl</conf_key>
+      <conf_value/>
+      <conf_default>0</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>10</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>362</conf_id>
+      <conf_title>Текст левого контроллера</conf_title>
+      <conf_description/>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>prevControlText</conf_key>
+      <conf_value/>
+      <conf_default>Предыдущий</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>11</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>353</conf_id>
+      <conf_title>Скорость слайдера</conf_title>
+      <conf_description>Укажите скорость слайдера в м.с. По  умолчанию стоит 500</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>slideSpeed</conf_key>
+      <conf_value/>
+      <conf_default>500</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>2</conf_position>
+      <conf_start_group>Настройки слайдера</conf_start_group>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>354</conf_id>
+      <conf_title>С какого баннера начинать показ?</conf_title>
+      <conf_description>Укажите с какого баннера начать показ. По умолчанию стоит с 1</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>input</conf_type>
+      <conf_key>slideStart</conf_key>
+      <conf_value/>
+      <conf_default>1</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>3</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+    <setting>
+      <conf_id>355</conf_id>
+      <conf_title>Начинать показ рандомно?</conf_title>
+      <conf_description>Начинать показ баннеров с рандомного баннера?</conf_description>
+      <conf_group>46</conf_group>
+      <conf_type>yes_no</conf_type>
+      <conf_key>startRandom</conf_key>
+      <conf_value/>
+      <conf_default>0</conf_default>
+      <conf_extra/>
+      <conf_evalphp/>
+      <conf_protected>0</conf_protected>
+      <conf_position>4</conf_position>
+      <conf_start_group/>
+      <conf_add_cache>1</conf_add_cache>
+      <conf_keywords/>
+      <conf_title_keyword>fmwAdvertise</conf_title_keyword>
+      <conf_is_title>0</conf_is_title>
+    </setting>
+  </hookextras_settings>
+  <hookextras_language/>
+  <hookextras_modules/>
+  <hookextras_help/>
+  <hookextras_templates>
+    <templates>
+      <template_group>skin_boards</template_group>
+      <template_content><![CDATA[<style>@import url({style_images_url}/fmw_advertise/jquery.bxslider.css);</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="{style_images_url}/fmw_advertise/jquery.bxslider.js"></script>
+<script>
+jQuery.noConflict();
+jQuery(document).ready(function(){
+  jQuery('.slider5').bxSlider({
+    slideWidth: 300,
+    minSlides: 3,
+    maxSlides: 3,
+    moveSlides: 3,
+    slideMargin: 10,
+    auto: true,
+    speed: {$this->settings['slideSpeed']},
+    startSlide: {$this->settings['slideStart']},
+    randomStart: <if test="$this->settings['startRandom']=='1'">true<else />false</if>,
+    infiniteLoop: <if test="$this->settings['loopInfinite']=='1'">true<else />false</if>,
+    hideControlOnEnd: <if test="$this->settings['controlHide']=='1'">true<else />false</if>,
+    controls: <if test="$this->settings['controlsEnable']=='1'">true<else />false</if>,
+    <if test="$this->settings['nextControl']=='1'">nextText: {$this->settings['nextControlText']},</if>
+    <if test="$this->settings['prevControl']=='1'">nextText: {$this->settings['prevControlText']},</if>
+    autoHover: <if test="$this->settings['hoverStop']=='1'">true<else />false</if>
+  });
+});
+</script>
+<div class='category_block block_wrap'>
+  <h3 class='maintitle'>
+    <a title='Свернуть' href='#' class='toggle right'>Свернуть</a> <a title='Реклама на форуме' href='#'>Реклама</a>
+  </h3>
+  <div class='ipsBox table_wrap'>
+    <div class='ipsBox_container'>
+      <table class='ipb_table'>
+        <td>
+          <div class="slider5">
+            <div class="slide"><a href="<if test="$this->settings['1bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['1bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['1bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['1bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['2bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['2bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['2bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['2bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['3bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['3bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['3bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['3bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['4bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['4bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['4bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['4bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['5bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['5bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['5bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['5bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['6bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['6bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['6bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['6bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['7bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['7bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['7bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['7bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['8bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['8bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['8bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['8bannerImage']}</if>"></a></div>
+            <div class="slide"><a href="<if test="$this->settings['9bannerLink']==''">{$this->settings['board_url']}/index.php?app=forums&module=extras&section=stats&do=leaders<else />{$this->settings['9bannerLink']}</if>" target="_blank" title="Напишите администратору, если хотите поставить свой баннер"><img src="<if test="$this->settings['9bannerImage']==''">{style_images_url}/fmw_advertise/free.png<else />{$this->settings['9bannerImage']}</if>"></a></div>
+          </div>
+        </td>
+      </table>
+    </div>
+  </div>
+  <br />
+</div>]]></template_content>
+      <template_name>fmw_advertise</template_name>
+      <template_data/>
+      <template_updated>1419403575</template_updated>
+      <template_removable>1</template_removable>
+      <template_added_to>1</template_added_to>
+      <template_user_added>1</template_user_added>
+      <template_user_edited>0</template_user_edited>
+      <template_master_key>root</template_master_key>
+    </templates>
+  </hookextras_templates>
+  <hookextras_css/>
+  <hookextras_replacements/>
+  <hookextras_tasks/>
+  <hookextras_database_create/>
+  <hookextras_database_alter/>
+  <hookextras_database_update/>
+  <hookextras_database_insert/>
+</hookexport>
